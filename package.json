@@ -2,7 +2,7 @@
   "name": "stik.js",
   "version": "1.0.0",
   "description": "A JS framework to wire your JavaScript execution to your server-side rendered HTML templates",
-  "main": "stik-full.js",
+  "main": "stik.js",
   "scripts": {
     "test": "grunt test"
   },
