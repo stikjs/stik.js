@@ -4,9 +4,6 @@
 [submodule "stik-dom"]
 	path = stik-dom
 	url = git@github.com:stikjs/stik-dom.git
-[submodule "stik-dom-lib-loader"]
-	path = stik-dom-lib-loader
-	url = git@github.com:stikjs/stik-dom-lib-loader.git
 [submodule "stik-helpers"]
 	path = stik-helpers
 	url = git@github.com:stikjs/stik-helpers.git
