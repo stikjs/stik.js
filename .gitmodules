@@ -16,3 +16,6 @@
 [submodule "stik-view-bag"]
 	path = stik-view-bag
 	url = git@github.com:stikjs/stik-view-bag.git
+[submodule "stik-courier"]
+	path = stik-courier
+	url = git@github.com:stikjs/stik-courier.git

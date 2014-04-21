@@ -21,15 +21,16 @@ module.exports = function(grunt){
         banner: '<%= meta.banner %>'
       },
       light: {
-        src: [ 'stik-core/stik.js' ],
+        src: [ 'stik-core/stik-core.js' ],
         dest: 'stik-light.js',
         nonull: true
       },
       full: {
         src: [
-          'stik-core/stik.js',
+          'stik-core/stik-core.js',
           'stik-helpers/stik-helpers.js',
           'stik-view-bag/stik-view-bag.js',
+          'stik-courier/stik-courier.js',
           'stik-dom/stik-dom.js',
           'stik-url/stik-url.js',
           'stik-labs/stik-labs.js'
