@@ -1018,12 +1018,12 @@ window.stik.dom( "serialize", function(){
   };
 });
 
-// Version: 0.2.0 | From: 21-04-2014
+// Version: 0.2.1 | From: 21-04-2014
 
 window.stik.boundary({
   as: '$url',
   resolvable: true,
-  to: function($window){
+  to: function( $window ){
     return {
       baseUrl: function baseUrl(){
         return $window.location.href;
