@@ -1,0 +1,37 @@
+{
+  "name": "stik.js",
+  "version": "1.0.0",
+  "description": "A JS framework to wire your JavaScript execution to your server-side rendered HTML templates",
+  "main": "stik-full.js",
+  "scripts": {
+    "test": "grunt test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:stikjs/stik.js.git"
+  },
+  "keywords": [
+    "scope",
+    "management",
+    "Dependency Injection",
+    "DI",
+    "Single Responsibility Principle",
+    "SRP"
+  ],
+  "author": "Lukas Alexandre",
+  "license": "MIT",
+  "homepage": "stikjs.com",
+  "devDependencies": {
+    "grunt": "~0.4.2",
+    "grunt-cli": "~0.1.11",
+    "grunt-contrib-uglify": "~0.2.7",
+    "grunt-contrib-concat": "~0.4.0"
+  },
+  "banner": {
+    "divider": "// ==========================================================================\n",
+    "project": "// Project:   Stik.js - JavaScript Separation Of Concerns\n",
+    "copyright": "// Copyright: Copyright 2013-2014 Lukas Alexandre\n",
+    "license": "// License:   Licensed under MIT license\n",
+    "licenseLink": "//            See https://github.com/stikjs/stik.js/blob/master/LICENSE\n"
+  }
+}
