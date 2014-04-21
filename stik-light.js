@@ -7,13 +7,6 @@
 
 // Version: 1.0.0 | From: 21-04-2014
 
-// ==========================================================================
-// Project:   Stik.js - JavaScript Separation Of Concerns
-// Copyright: Copyright 2013-2014 Lukas Alexandre
-// License:   Licensed under MIT license
-//            See https://github.com/stikjs/stik.js/blob/master/LICENSE
-// ==========================================================================
-
 // Version: 1.0.0-rc3 | From: 21-04-2014
 
 if ( window.stik ){
