@@ -1,0 +1,18 @@
+[submodule "stik-core"]
+	path = stik-core
+	url = git@github.com:stikjs/stik-core.git
+[submodule "stik-dom"]
+	path = stik-dom
+	url = git@github.com:stikjs/stik-dom.git
+[submodule "stik-dom-lib-loader"]
+	path = stik-dom-lib-loader
+	url = git@github.com:stikjs/stik-dom-lib-loader.git
+[submodule "stik-helpers"]
+	path = stik-helpers
+	url = git@github.com:stikjs/stik-helpers.git
+[submodule "stik-url"]
+	path = stik-url
+	url = git@github.com:stikjs/stik-url.git
+[submodule "stik-labs"]
+	path = stik-labs
+	url = git@github.com:stikjs/stik-labs.git
