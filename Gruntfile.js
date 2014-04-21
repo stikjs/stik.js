@@ -29,6 +29,7 @@ module.exports = function(grunt){
         src: [
           'stik-core/stik.js',
           'stik-helpers/stik-helpers.js',
+          'stik-view-bag/stik-view-bag.js',
           'stik-dom/stik-dom.js',
           'stik-url/stik-url.js',
           'stik-labs/stik-labs.js'
