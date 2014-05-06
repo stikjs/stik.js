@@ -54,11 +54,30 @@ module.exports = function(grunt){
           'stik-light.min.js': ['stik-light.js']
         }
       }
+    },
+    compress: {
+      full: {
+        options: {
+          archive: 'stik-min.zip'
+        },
+        files: [
+          {src: 'stik.min.js'} // includes files in path
+        ]
+      },
+      light: {
+        options: {
+          archive: 'stik-light-min.zip'
+        },
+        files: [
+          {src: 'stik-light.min.js'} // includes files in path
+        ]
+      }
     }
   });
 
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-compress');
 
-  grunt.registerTask('pack', ['concat', 'uglify']);
+  grunt.registerTask('pack', ['concat', 'uglify', 'compress']);
 };

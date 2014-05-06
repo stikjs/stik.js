@@ -5,7 +5,7 @@
 //            See https://github.com/stikjs/stik.js/blob/master/LICENSE
 // ==========================================================================
 
-// Version: 1.0.0 | From: 22-04-2014
+// Version: 1.0.0 | From: 06-05-2014
 
 // Version: 1.0.0 | From: 21-04-2014
 
@@ -837,15 +837,7 @@ window.stik.dom( "isVisible", function( isHidden ){
 
 window.stik.dom( "show", function( isHidden ){
   return function showElm( elm ){
-    if ( elm.style.display === "none" ) {
-      if ( elm.style.removeProperty ) {
-        elm.style.removeProperty( "display" );
-      } else {
-        elm.style.removeAttribute( "display" );
-      }
-    } else if ( isHidden( elm ) ) {
-      elm.style.display = "block";
-    }
+    elm.style.display = "block";
   };
 });
 
