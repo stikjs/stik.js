@@ -5,7 +5,7 @@
 //            See https://github.com/stikjs/stik.js/blob/master/LICENSE
 // ==========================================================================
 
-// Version: 1.0.0 | From: 06-05-2014
+// Version: 1.0.0 | From: 08-05-2014
 
 // Version: 1.0.0 | From: 21-04-2014
 
@@ -792,16 +792,20 @@ window.stik.dom( "hasClass", function(){
 window.stik.dom( "removeClass", function( hasClass ){
   return function removeClass( elm, selector ){
     if ( hasClass( elm, selector ) ){
-      var regex = new RegExp( "\\b\\s?" + selector + "\\b", "g" );
+      var regex = new RegExp( "(^|\\s)?" + selector + "(\\s|$)", "g" );
       elm.className = elm.className.replace( regex, '' );
     }
   };
 });
 
 window.stik.dom( "addClass", function( hasClass ){
-  return function addClass( elm, selector ){
-    if ( !hasClass( elm, selector ) ){
-      elm.className = ( elm.className + " " + selector ).trim();
+  return function addClass( elm, className ){
+    if ( !hasClass( elm, className ) ){
+      if ( elm.classList ) {
+        elm.classList.add( className );
+      } else {
+        elm.className = ( elm.className + " " + className ).trim();
+      }
     }
   };
 });
@@ -849,12 +853,12 @@ window.stik.dom( "remove", function(){
 
 window.stik.dom( "parse", function(){
   return function( elmStr ){
-    var div = document.createElement( "div" );
-    div.innerHTML = elmStr;
-    if (div.childNodes.length > 1) {
-      return div.childNodes;
+    var tmp = document.implementation.createHTMLDocument();
+    tmp.body.innerHTML = elmStr;
+    if ( tmp.body.children > 1 ) {
+      return tmp.body.childNodes;
     } else {
-      return div.firstChild;
+      return tmp.body.firstChild;
     }
   };
 });
@@ -887,14 +891,7 @@ window.stik.dom( "prepend", function( insertBefore, append ){
 window.stik.dom( "insertAfter", function(){
   return function insertAfter( referenceNode, newChild ) {
     if ( typeof newChild === "string" ) {
-      var div = document.createElement( "div" );
-      div.innerHTML = newChild;
-
-      while ( div.firstChild ) {
-        referenceNode.parentNode.insertBefore(
-          div.firstChild, referenceNode.nextSibling
-        );
-      }
+      referenceNode.insertAdjacentHTML( "afterend", newChild );
     } else {
       referenceNode.parentNode.insertBefore(
         newChild, referenceNode.nextSibling
@@ -906,14 +903,7 @@ window.stik.dom( "insertAfter", function(){
 window.stik.dom( "insertBefore", function(){
   return function insertBefore( referenceNode, newChild ){
     if ( typeof newChild === "string" ) {
-      var div = document.createElement( "div" );
-      div.innerHTML = newChild;
-
-      while ( div.firstChild ) {
-        referenceNode.parentNode.insertBefore(
-          div.firstChild, referenceNode
-        );
-      }
+      referenceNode.insertAdjacentHTML( "beforebegin", newChild );
     } else {
       referenceNode.parentNode.insertBefore(
         newChild, referenceNode
@@ -948,6 +938,41 @@ window.stik.dom( "data", function(){
     }
 
     return attrs;
+  };
+});
+
+window.stik.dom( "contains", function(){
+  return function( elm, child ){
+    if ( typeof child === "string" ) {
+      return el.querySelector( selector ) !== null;
+    } else {
+      return elm !== child && elm.contains( child );
+    }
+  };
+});
+
+window.stik.dom( "filter", function(){
+  return function( elm, selector ){
+    return Array.prototype.filter.call(
+      elm.querySelectorAll( selector ), filterFn
+    );
+  };
+});
+
+window.stik.dom( "position", function(){
+  return function( elm ){
+    return { left: elm.offsetLeft, top: elm.offsetTop };
+  }
+});
+
+window.stik.dom( "siblings", function(){
+  return function( elm ){
+    return Array.prototype.filter.call(
+      elm.parentNode.children,
+      function( child ){
+        return child !== elm;
+      }
+    );
   };
 });
 
