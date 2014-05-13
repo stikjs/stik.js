@@ -5,7 +5,7 @@
 //            See https://github.com/stikjs/stik.js/blob/master/LICENSE
 // ==========================================================================
 
-// Version: 1.0.0 | From: 09-05-2014
+// Version: 1.0.0 | From: 13-05-2014
 
 // Version: 1.0.0 | From: 09-05-2014
 
@@ -512,7 +512,7 @@ window.stik.boundary = function boundary( spec ){
   return window.stik.$$manager.addBoundary( spec );
 };
 
-// Version: 0.1.0 | From: 21-04-2014
+// Version: 0.2.0 | From: 13-05-2014
 
 (function(){
   var helpers = {},
@@ -596,6 +596,20 @@ window.stik.helper( "deepExtend", function(){
     }
     return destination;
   };
+});
+
+window.stik.helper( "zip", function(){
+  return function(firstArray, secondArray){
+    var matrix = [];
+
+    for (var i = 0; i < firstArray.length; i++) {
+      matrix.push([]);
+      matrix[i].push(firstArray[i]);
+      matrix[i].push(secondArray[i]);
+    }
+
+    return matrix;
+  }
 });
 
 // Version: 0.1.0 | From: 21-04-2014
