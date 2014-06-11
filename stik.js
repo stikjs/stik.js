@@ -808,10 +808,14 @@ window.stik.boundary({
 
 window.stik.dom( "hasClass", function(){
   return function hasClass( elm, selector ){
-    var className = " " + selector + " ";
-    return ( " " + elm.className + " " ).
-      replace( /[\t\r\n\f]/g, " " ).
-      indexOf( className ) >= 0;
+    if (elm.classList) {
+      return elm.classList.contains( selector );
+    } else {
+      var className = " " + selector + " ";
+      return ( " " + elm.className + " " ).
+        replace( /[\t\r\n\f]/g, " " ).
+        indexOf( className ) >= 0;
+    }
   };
 });
 
@@ -825,9 +829,13 @@ window.stik.dom( "removeClass", function( hasClass ){
     }
 
     for (var i = 0; i < classNames.length; i++) {
-      if ( hasClass( elm, classNames[ i ] ) ){
-        var regex = new RegExp( "(^|\\s)?" + classNames[ i ] + "(\\s|$)", "g" );
-        elm.className = elm.className.replace( regex, " " ).trim();
+      if ( elm.classList ) {
+        elm.classList.remove( classNames[ i ] );
+      } else {
+        if ( hasClass( elm, classNames[ i ] ) ){
+          var regex = new RegExp( "(^|\\s)?" + classNames[ i ] + "(\\s|$)", "g" );
+          elm.className = elm.className.replace( regex, " " ).trim();
+        }
       }
     }
   };
