@@ -5,7 +5,7 @@
 //            See https://github.com/stikjs/stik.js/blob/master/LICENSE
 // ==========================================================================
 
-// Version: 1.0.0 | From: 13-05-2014
+// Version: 1.0.0 | From: 11-06-2014
 
 // Version: 1.0.0 | From: 09-05-2014
 
@@ -512,7 +512,7 @@ window.stik.boundary = function boundary( spec ){
   return window.stik.$$manager.addBoundary( spec );
 };
 
-// Version: 0.2.0 | From: 13-05-2014
+// Version: 0.3.0 | From: 07-06-2014
 
 (function(){
   var helpers = {},
@@ -564,6 +564,12 @@ window.stik.boundary( { as: "$window", to: window } );
 
 window.stik.helper( "$window", function(){
   return window;
+});
+
+window.stik.helper( "isArray", function(){
+  return function isArray( obj ){
+    return Object.prototype.toString.call( obj ) === "[object Array]"
+  }
 });
 
 window.stik.helper( "debounce", function(){
@@ -754,7 +760,7 @@ window.stik.boundary({
   }
 });
 
-(function(){
+(function(window){
   var methods = {},
       modules = {},
       tmpDependencies = {};
@@ -798,41 +804,63 @@ window.stik.boundary({
   };
 
   window.stik.boundary( { as: "$dom", to: methods } );
-}());
+})(window);
 
 window.stik.dom( "hasClass", function(){
   return function hasClass( elm, selector ){
     var className = " " + selector + " ";
     return ( " " + elm.className + " " ).
-      replace( /[\n\t]/g, " " ).
-      indexOf( className ) > -1;
+      replace( /[\t\r\n\f]/g, " " ).
+      indexOf( className ) >= 0;
   };
 });
 
 window.stik.dom( "removeClass", function( hasClass ){
-  return function removeClass( elm, selector ){
-    if ( hasClass( elm, selector ) ){
-      var regex = new RegExp( "(^|\\s)?" + selector + "(\\s|$)", "g" );
-      elm.className = elm.className.replace( regex, '' );
+  return function removeClass( elm, className ){
+    var classNames = [];
+    if ( Object.prototype.toString.call( className ) === "[object Array]" ) {
+      classNames = className;
+    } else {
+      classNames = className.split(" ");
+    }
+
+    for (var i = 0; i < classNames.length; i++) {
+      if ( hasClass( elm, classNames[ i ] ) ){
+        var regex = new RegExp( "(^|\\s)?" + classNames[ i ] + "(\\s|$)", "g" );
+        elm.className = elm.className.replace( regex, " " ).trim();
+      }
     }
   };
 });
 
 window.stik.dom( "addClass", function( hasClass ){
   return function addClass( elm, className ){
-    if ( !hasClass( elm, className ) ){
-      if ( elm.classList ) {
-        elm.classList.add( className );
-      } else {
-        elm.className = ( elm.className + " " + className ).trim();
+    var classNames = [];
+    if ( Object.prototype.toString.call( className ) === "[object Array]" ) {
+      classNames = className;
+    } else {
+      classNames = className.split(" ");
+    }
+
+    for (var i = 0; i < classNames.length; i++) {
+      if ( !hasClass( elm, classNames[ i ] ) ){
+        if ( elm.classList ) {
+          elm.classList.add( classNames[ i ] );
+        } else {
+          elm.className = ( elm.className + " " + classNames[ i ] ).trim();
+        }
       }
     }
   };
 });
 
 window.stik.dom( "toggleClass", function( hasClass, addClass, removeClass ){
-  return function toggleClass( elm, selector ){
-    if ( hasClass( elm, selector ) ) {
+  return function toggleClass( elm, selector, forceAdd ){
+    if ( forceAdd === true ) {
+      addClass( elm, selector );
+    } else if ( forceAdd === false ) {
+      removeClass( elm, selector );
+    } else if ( hasClass( elm, selector ) ) {
       removeClass( elm, selector );
     } else if ( !hasClass( elm, selector ) ) {
       addClass( elm, selector );
