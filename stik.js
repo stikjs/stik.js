@@ -5,7 +5,7 @@
 //            See https://github.com/stikjs/stik.js/blob/master/LICENSE
 // ==========================================================================
 
-// Version: 1.0.0 | From: 11-06-2014
+// Version: 1.0.0 | From: 20-06-2014
 
 // Version: 1.0.0 | From: 11-06-2014
 
@@ -697,7 +697,7 @@ window.stik.boundary({
   }
 });
 
-// Version: 0.2.0 | From: 11-06-2014
+// Version: 0.3.0 | From: 20-06-2014
 
 window.stik.boundary({
   as: "$courier",
@@ -718,9 +718,11 @@ window.stik.boundary({
       return unsubscribe.bind( {}, subscription );
     };
 
-    obj.send = function send( box, message ){
+    obj.send = function send( box, message, options ){
       var i = 0,
           foundAny = false;
+
+      options = options || { throwOnMissing: true };
 
       fetchSubscriptions( box , function( openers ){
         foundAny = true;
@@ -730,7 +732,9 @@ window.stik.boundary({
         }
       });
 
-      if ( !foundAny ) { throw "Stik: No receiver registered for '" + box + "'"; }
+      if ( !foundAny && options.throwOnMissing === true ) {
+        throw "Stik: No receiver registered for '" + box + "'";
+      }
     };
 
     obj.reset = function reset() { subscriptions = {}; }
@@ -760,7 +764,7 @@ window.stik.boundary({
     }
 
     function createSubscription( spec ){
-      spec.id = '#' + Math.floor(
+      spec.id = "#" + Math.floor(
         Math.random()*16777215
       ).toString( 16 );
 
