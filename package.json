@@ -2,9 +2,9 @@
   "name": "stik.js",
   "version": "1.0.0",
   "description": "A JS framework to wire your JavaScript execution to your server-side rendered HTML templates",
-  "main": "stik.js",
+  "main": "dist/stik.js",
   "scripts": {
-    "test": "grunt test"
+    "test": "gulp test"
   },
   "repository": {
     "type": "git",
@@ -20,7 +20,7 @@
   ],
   "author": "Lukas Alexandre",
   "license": "MIT",
-  "homepage": "stikjs.com",
+  "homepage": "http://stikjs.com",
   "devDependencies": {
     "gulp-concat": "^2.2.0",
     "gulp-header": "^1.0.2",
@@ -34,5 +34,15 @@
     "copyright": "// Copyright: Copyright 2013-2014 Lukas Alexandre",
     "license": "// License:   Licensed under MIT license",
     "licenseLink": "//            See https://github.com/stikjs/stik.js/blob/master/LICENSE"
+  },
+  "dependencies": {
+    "stik-core": "^1.0.3",
+    "stik-courier": "^0.4.0",
+    "stik-dom": "^0.5.0",
+    "stik-helpers": "^0.4.0",
+    "stik-labs": "^0.2.0",
+    "stik-resource": "^0.1.1",
+    "stik-url": "^0.2.2",
+    "stik-view-bag": "^0.3.0"
   }
 }

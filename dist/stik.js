@@ -339,7 +339,7 @@
   stik.manager = function manager(){
     var behaviors   = {},
         controllers = {},
-        boundaries  = { all: {}, controller:{}, behavior:{} },
+        boundaries  = { all: {}, controller: {}, behavior: {} },
         obj = {};
 
     obj.addControllerWithAction = function addControllerWithAction( controllerName, actionName, executionUnit ){
@@ -625,15 +625,15 @@
 
   stik.helper( "zip", function(){
     return function(firstArray, secondArray){
-      var matrix = [];
+      var mergedArray = [];
 
       for (var i = 0; i < firstArray.length; i++) {
-        matrix.push([]);
-        matrix[i].push(firstArray[i]);
-        matrix[i].push(secondArray[i]);
+        mergedArray.push([]);
+        mergedArray[i].push(firstArray[i]);
+        mergedArray[i].push(secondArray[i]);
       }
 
-      return matrix;
+      return mergedArray;
     }
   });
 })( window.stik );
@@ -720,6 +720,15 @@
     to: new Courier()
   });
 })( window.stik, window.Courier );
+
+// Stik-resource - Version: 0.1.0 | From: 25-6-2014
+(function( stik, vej ){
+  stik.boundary({
+    as: "$resource",
+    from: "controller",
+    to: vej.resource
+  });
+})( window.stik, window.vej );
 
 // Version: 0.5.0 | From: 24-06-2014
 
@@ -1114,66 +1123,7 @@
   });
 })(window.stik);
 
-// ==========================================================================
-// Project:   Stik URL - URL related functionalities for Stik.js
-// Copyright: Copyright 2013-2014 Lukas Alexandre
-// License:   Licensed under MIT license
-//            See https://github.com/stikjs/stik-url/blob/master/LICENSE
-// ==========================================================================
-
-// Version: 0.2.2 | From: 11-06-2014
-
-window.stik.boundary({
-  as: '$url',
-  resolvable: true,
-  to: function( $window ){
-    return {
-      baseUrl: function baseUrl(){
-        return $window.location.href;
-      },
-      relativeUrl: function relativeUrl(){
-        return this.baseUrl.match(/http:\/\/.+?(\/.+$)/)[1];
-      },
-      pathName: function pathName(){
-        return $window.location.pathname;
-      },
-      hash: function hash( newHashValue ){
-        return this.locationHash( newHashValue ).replace( /^#/, '' );
-      },
-      locationHash: function locationHash( newHashValue ){
-        if ( newHashValue !== undefined ) {
-          $window.location.hash = newHashValue;
-        }
-        return location.hash;
-      },
-      mainPath: function mainPath() {
-        return '/' + this.pathName().split( '/' )[ 1 ];
-      },
-      goTo: function goTo( url ){
-        $window.location = url;
-      },
-      queries: function queries(){
-        var result, queries, query;
-
-        queries = this.baseUrl().split( '?' )[ 1 ];
-
-        if ( queries ) {
-          queries = queries.split( '&' );
-          result = {};
-          for ( var i = 0; i < queries.length; i++ ) {
-            query = queries[ i ].split( '=' );
-            result[ query[ 0 ] ] = query[ 1 ];
-          }
-          return result;
-        } else {
-          return {};
-        }
-      }
-    };
-  }
-});
-
-// Stik-labs - Version: 0.2.0 | From: 24-6-2014
+// Stik-labs - Version: 0.2.0 | From: 25-6-2014
 
 (function( stik ){ stik.labs = {}; })( window.stik );
 

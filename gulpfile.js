@@ -9,28 +9,19 @@ var d = new Date();
 var releaseDate = d.getDate() + "-" + (d.getMonth() + 1) + "-" + d.getFullYear()
 
 var fullStack = [
-  "stik-core/dist/stik-core.js",
-  "stik-helpers/dist/stik-helpers.js",
-  "stik-view-bag/dist/stik-view-bag.js",
-  "stik-courier/dist/stik-courier.js",
-  "stik-dom/stik-dom.js",
-  "stik-url/stik-url.js",
-  "stik-labs/dist/stik-labs.js"
+  "node_modules/stik-core/dist/stik-core.js",
+  "node_modules/stik-helpers/dist/stik-helpers.js",
+  "node_modules/stik-view-bag/dist/stik-view-bag.js",
+  "node_modules/stik-courier/dist/stik-courier.js",
+  "node_modules/stik-resource/dist/stik-resource.js",
+  "node_modules/stik-dom/stik-dom.js",
+  "node_modules/stik-url/stik-url.js",
+  "node_modules/stik-labs/dist/stik-labs.js"
 ];
 
 var lightStack = [
-  "stik-core/stik-core.js",
+  "node_modules/stik-core/dist/stik-core.js",
 ];
-
-var noNPMStack = [
-  "stik-core/dist/stik-core.js",
-  "stik-helpers/dist/stik-helpers.js",
-  "stik-view-bag/dist/stik-view-bag.js",
-  "stik-courier/dist/stik-courier-full.js",
-  "stik-dom/stik-dom.js",
-  "stik-url/stik-url.js",
-  "stik-labs/dist/stik-labs.js"
-]
 
 var banner = [
   "<%= pkg.banner.divider %>",
@@ -61,25 +52,6 @@ gulp.task("pack", function(){
       .pipe(uglify())
       .pipe(gulp.dest("dist"));
 
-  // bloated versions
-  gulp.src(noNPMStack)
-      .pipe(concat("stik-bloated.js"))
-      .pipe(header(banner, { pkg: pkg, date: releaseDate }))
-      .pipe(gulp.dest("dist"))
-      .pipe(concat("stik-bloated.min.js"))
-      .pipe(uglify())
-      .pipe(gulp.dest("dist"));
-
-  // bloated zipped version
-  gulp.src("dist/stik-bloated.js")
-      .pipe(zip("stik-bloated.js.zip"))
-      .pipe(gulp.dest("dist"));
-
-  // bloated minified zipped version
-  gulp.src("dist/stik-bloated.min.js")
-      .pipe(zip("stik-bloated.min.js.zip"))
-      .pipe(gulp.dest("dist"));
-
   // light zipped version
   gulp.src("dist/stik-light.js")
       .pipe(zip("stik-light.js.zip"))
@@ -87,7 +59,7 @@ gulp.task("pack", function(){
 
   // light minified zipped version
   gulp.src("dist/stik-light.min.js")
-      .pipe(zip("stik-light.js.zip"))
+      .pipe(zip("stik-light.min.js.zip"))
       .pipe(gulp.dest("dist"));
 
   // normal zipped version
