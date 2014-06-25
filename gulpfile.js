@@ -11,7 +11,7 @@ var releaseDate = d.getDate() + "-" + (d.getMonth() + 1) + "-" + d.getFullYear()
 var fullStack = [
   "stik-core/dist/stik-core.js",
   "stik-helpers/dist/stik-helpers.js",
-  "stik-view-bag/stik-view-bag.js",
+  "stik-view-bag/dist/stik-view-bag.js",
   "stik-courier/dist/stik-courier.js",
   "stik-dom/stik-dom.js",
   "stik-url/stik-url.js",
@@ -25,7 +25,7 @@ var lightStack = [
 var noNPMStack = [
   "stik-core/dist/stik-core.js",
   "stik-helpers/dist/stik-helpers.js",
-  "stik-view-bag/stik-view-bag.js",
+  "stik-view-bag/dist/stik-view-bag.js",
   "stik-courier/dist/stik-courier-full.js",
   "stik-dom/stik-dom.js",
   "stik-url/stik-url.js",
