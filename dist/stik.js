@@ -531,6 +531,15 @@
   };
 })( window.stik );
 
+// Stik-courier - Version: 0.4.0 | From: 25-6-2014
+(function( stik, Courier ){
+  stik.boundary({
+    as: "$courier",
+    cache: true,
+    to: new Courier()
+  });
+})( window.stik, window.Courier );
+
 // Stik-helpers - Version: 0.4.0 | From: 25-6-2014
 (function( stik ){
   var helpers = {},
@@ -712,15 +721,6 @@
   });
 })( window.stik );
 
-// Stik-courier - Version: 0.4.0 | From: 25-6-2014
-(function( stik, Courier ){
-  stik.boundary({
-    as: "$courier",
-    cache: true,
-    to: new Courier()
-  });
-})( window.stik, window.Courier );
-
 // Stik-resource - Version: 0.1.0 | From: 25-6-2014
 (function( stik, vej ){
   stik.boundary({
@@ -730,9 +730,8 @@
   });
 })( window.stik, window.vej );
 
-// Version: 0.5.0 | From: 24-06-2014
-
-(function(stik){
+// Stik-dom - Version: 0.5.1 | From: 25-6-2014
+(function( stik ){
   var methods = {},
       modules = {},
       tmpDependencies = {};
@@ -780,9 +779,9 @@
   }
 
   stik.boundary( { as: "$dom", to: methods } );
-})(window.stik);
+})( window.stik );
 
-(function(stik){
+(function( stik ){
   stik.boundary({
     as: "$elm",
     resolvable: true,
@@ -1040,9 +1039,9 @@
       return $dom.data( $template );
     }
   });
-})(window.stik);
+})( window.stik );
 
-(function(stik){
+(function( stik ){
   stik.dom( "serialize", function(){
     return function serializeForm( form, asObj ){
       var i, j, q;
@@ -1121,7 +1120,61 @@
       }
     };
   });
-})(window.stik);
+})( window.stik );
+
+// Stik-url - Version: 0.2.2 | From: 25-6-2014
+window.stik.boundary({
+  as: "$url",
+  resolvable: true,
+  to: function( $window ){
+    return {
+      baseUrl: function baseUrl(){
+        return $window.location.href;
+      },
+      relativeUrl: function relativeUrl(){
+        return this.baseUrl.match(/http:\/\/.+?(\/.+$)/)[1];
+      },
+      pathName: function pathName(){
+        return $window.location.pathname;
+      },
+      hash: function hash( newHashValue ){
+        return this.locationHash( newHashValue ).replace( /^#/, "" );
+      },
+      hashBang: function hashBang( newHashBangValue ){
+        return this.locationHash( "!" + newHashBangValue ).replace( /^#!/, "" );
+      },
+      locationHash: function locationHash( newHashValue ){
+        if ( newHashValue !== undefined ) {
+          $window.location.hash = newHashValue;
+        }
+        return $window.location.hash;
+      },
+      mainPath: function mainPath() {
+        return "/" + this.pathName().split( "/" )[ 1 ];
+      },
+      goTo: function goTo( url ){
+        $window.location = url;
+      },
+      queries: function queries(){
+        var result, queries, query;
+
+        queries = this.baseUrl().split( "?" )[ 1 ];
+
+        if ( queries ) {
+          queries = queries.split( "&" );
+          result = {};
+          for ( var i = 0; i < queries.length; i++ ) {
+            query = queries[ i ].split( "=" );
+            result[ query[ 0 ] ] = query[ 1 ];
+          }
+          return result;
+        } else {
+          return {};
+        }
+      }
+    };
+  }
+});
 
 // Stik-labs - Version: 0.2.0 | From: 25-6-2014
 
