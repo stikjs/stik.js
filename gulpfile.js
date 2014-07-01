@@ -3,7 +3,7 @@ var gulp   = require("gulp"),
     concat = require("gulp-concat"),
     uglify = require("gulp-uglify"),
     zip    = require("gulp-zip"),
-    pkg = require("./package.json");
+    pkg    = require("./package.json");
 
 var d = new Date();
 var releaseDate = d.getDate() + "-" + (d.getMonth() + 1) + "-" + d.getFullYear()
