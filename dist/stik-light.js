@@ -5,7 +5,7 @@
 //            See https://github.com/stikjs/stik.js/blob/master/LICENSE
 // ==========================================================================
 
-// Version: 1.0.0 | From: 30-6-2014
+// Version: 1.0.0 | From: 1-7-2014
 
 // Stik-core - Version: 1.0.3 | From: 25-6-2014
 (function( window ){

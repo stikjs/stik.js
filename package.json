@@ -11,12 +11,9 @@
     "url": "git@github.com:stikjs/stik.js.git"
   },
   "keywords": [
-    "scope",
-    "management",
+    "scope management",
     "Dependency Injection",
-    "DI",
-    "Single Responsibility Principle",
-    "SRP"
+    "Single Responsibility Principle"
   ],
   "author": "Lukas Alexandre",
   "license": "MIT",
@@ -38,7 +35,7 @@
   "dependencies": {
     "stik-core": "^1.0.3",
     "stik-courier": "^0.4.0",
-    "stik-dom": "^0.5.0",
+    "stik-dom": "0.x",
     "stik-helpers": "^0.4.0",
     "stik-labs": "^0.2.0",
     "stik-resource": "^0.1.1",
