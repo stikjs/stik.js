@@ -38,7 +38,6 @@
     "stik-dom": "0.x",
     "stik-helpers": "^0.4.0",
     "stik-labs": "^0.2.0",
-    "stik-resource": "^0.1.1",
     "stik-url": "^0.2.2",
     "stik-view-bag": "^0.3.0"
   }

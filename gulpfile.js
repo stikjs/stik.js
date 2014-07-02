@@ -13,8 +13,6 @@ var fullStack = [
   "node_modules/stik-courier/dist/stik-courier.js",
   "node_modules/stik-helpers/dist/stik-helpers.js",
   "node_modules/stik-view-bag/dist/stik-view-bag.js",
-  "node_modules/stik-resource/dist/stik-resource.js",
-  "node_modules/stik-dom/dist/stik-dom.js",
   "node_modules/stik-url/dist/stik-url.js",
   "node_modules/stik-labs/dist/stik-labs.js"
 ];
